@@ -15,7 +15,7 @@ interface Question {
   explanation: string;
 }
 
-const quizData: Question[] = [
+const quizData1: Question[] = [
   {
     id: 1,
     question: "この 町の <u>人口</u> は どのぐらいですか。",
@@ -95,7 +95,7 @@ const quizData: Question[] = [
   },
   {
     id: 12,
-    question: "先月 日本に 来ました。来月の 10日 _______ います。",
+    question: "先月 日本に 来ました. 来月の 10日 _______ います。",
     options: ["まで", "から", "か", "でも"],
     correctAnswer: 0,
     explanation: "Tôi đã đến Nhật Bản vào tháng trước. Tôi ở đến ngày mùng 10 tháng sau. (まで: Đến tận lúc nào)"
@@ -123,18 +123,126 @@ const quizData: Question[] = [
   }
 ];
 
+const quizData2: Question[] = [
+  {
+    id: 16,
+    question: "これから 日本語を <u>勉強</u> します。",
+    options: ["ばんきゅう", "べんきょう", "べんきゅう", "ばんきょう"],
+    correctAnswer: 1,
+    explanation: "Từ giờ tôi sẽ học tiếng Nhật. (勉強 - べんきょう: Học tập)"
+  },
+  {
+    id: 17,
+    question: "今日が _______ で、明日が 三日です。",
+    options: ["はつか", "ふつか", "よっか", "はたち"],
+    correctAnswer: 1,
+    explanation: "Hôm nay là mùng hai, ngày mai là mùng ba. (二日 - ふつか: Mùng 2)"
+  },
+  {
+    id: 18,
+    question: "_______ フランス語が できる 人は いませんか。",
+    options: ["だれが", "だれか", "だれでも", "だれも"],
+    correctAnswer: 1,
+    explanation: "Có ai nói được tiếng Pháp không? (だれか: Ai đó)"
+  },
+  {
+    id: 19,
+    question: "父は フランス語가 <u>じょうず</u> です。",
+    options: ["下手", "手上", "手下", "上手"],
+    correctAnswer: 3,
+    explanation: "Bố tôi giỏi tiếng Pháp. (上手 - じょうず: Giỏi)"
+  },
+  {
+    id: 20,
+    question: "A「東京まで あと どのくらい かかりますか。」 B「もうすぐ _______ よ。」",
+    options: ["つきます", "でます", "うごきます", "かえります"],
+    correctAnswer: 0,
+    explanation: "A: 'Còn bao lâu nữa thì tới Tokyo?' B: 'Sắp tới nơi rồi.' (つきます: Đến nơi)"
+  },
+  {
+    id: 21,
+    question: "これは 日本語で _______ 言いますか。",
+    options: ["なに", "どう", "どうやって", "なぜ"],
+    correctAnswer: 1,
+    explanation: "Cái này Tiếng Nhật nói như thế nào? (どう: Như thế nào)"
+  },
+  {
+    id: 22,
+    question: "<u>駅</u> まで、タクシーで 十分です。",
+    options: ["いき", "あき", "うき", "えき"],
+    correctAnswer: 3,
+    explanation: "Đến ga mất 10 phút đi bằng taxi. (駅 - えき: Nhà ga)"
+  },
+  {
+    id: 23,
+    question: "_______ 、失礼ですが、田中さんでは ありませんか。",
+    options: ["ええ", "あのう", "ああ", "じゃあ"],
+    correctAnswer: 1,
+    explanation: "Xin lỗi anh cho tôi hỏi. Anh có phải là anh Tanaka không ạ? (あのう: Xin lỗi... dùng để bắt chuyện)"
+  },
+  {
+    id: 24,
+    question: "きのうは、そんなに _______ ね。",
+    options: ["寒く ないでした", "寒く なかったです", "寒く なかったでした", "寒かった では ないです"],
+    correctAnswer: 1,
+    explanation: "Hôm qua không đến mức lạnh lắm nhỉ! (寒くなかったです: Quá khứ phủ định của tính từ i)"
+  },
+  {
+    id: 25,
+    question: "<u>けさ</u> は 七時に 起きて ジョギングしました。",
+    options: ["本朝", "分朝", "会朝", "今朝"],
+    correctAnswer: 3,
+    explanation: "Sáng nay, tôi dậy lúc 7 giờ rồi đi bộ. (今朝 - けさ: Sáng nay)"
+  },
+  {
+    id: 26,
+    question: "チャンネルを かえるから、テレビの _______ を 取って ください。",
+    options: ["リモコン", "パソコン", "エアコン", "コンピューター"],
+    correctAnswer: 0,
+    explanation: "Tôi muốn chuyển kênh nên lấy cho tôi cái điều khiển ti vi nào! (リモコン: Remote control)"
+  },
+  {
+    id: 27,
+    question: "私は テニスが 好きですが、上手 _______ 。",
+    options: ["ありませ ん", "ないです", "なりません", "じゃ ありません"],
+    correctAnswer: 3,
+    explanation: "Tôi thích chơi tenis nhưng không giỏi. (～じゃありません: Phủ định của danh từ/tính từ na)"
+  },
+  {
+    id: 28,
+    question: "休みの 日は <u>母</u> に 電話を します。",
+    options: ["はは", "ちち", "まま", "かか"],
+    correctAnswer: 0,
+    explanation: "Vào ngày nghỉ, tôi gọi điện thoại cho mẹ. (母 - はは: Mẹ của mình)"
+  },
+  {
+    id: 29,
+    question: "A「ただいま。」 B「_______ 。」",
+    options: ["いってきます", "いただきます", "いらっしゃいませ", "おかえりなさい"],
+    correctAnswer: 3,
+    explanation: "A: 'Anh về rồi đây!' B: 'Mừng anh đã về!' (おかえりなさい: Chào mừng về nhà)"
+  },
+  {
+    id: 30,
+    question: "田中さんは _______ やさしい 人です。",
+    options: ["きれいで", "きれくて", "きれいと", "きれい"],
+    correctAnswer: 0,
+    explanation: "Chị Tanaka là một người đẹp và tốt bụng. (きれい: Tính từ na -> kirei de)"
+  }
+];
+
 export default function App() {
+  const [activeSet, setActiveSet] = useState<Question[] | null>(null);
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [isFlipped, setIsFlipped] = useState(false);
 
-  const question = quizData[current];
-  const progress = ((current + 1) / quizData.length) * 100;
+  const question = activeSet ? activeSet[current] : null;
+  const progress = activeSet ? ((current + 1) / activeSet.length) * 100 : 0;
 
   const handleSelect = (index: number) => {
-    if (selected !== null) return;
+    if (selected !== null || !question) return;
     setSelected(index);
     if (index === question.correctAnswer) {
       setScore(prev => prev + 1);
@@ -142,10 +250,9 @@ export default function App() {
   };
 
   const handleNext = () => {
-    if (current + 1 < quizData.length) {
+    if (activeSet && current + 1 < activeSet.length) {
       setCurrent(prev => prev + 1);
       setSelected(null);
-      setIsFlipped(false);
     } else {
       setShowResult(true);
     }
@@ -156,8 +263,50 @@ export default function App() {
     setSelected(null);
     setScore(0);
     setShowResult(false);
-    setIsFlipped(false);
+    setActiveSet(null);
   };
+
+  if (!activeSet) {
+    return (
+      <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white w-full max-w-md p-8 rounded-[2.5rem] shadow-xl border border-gray-100 text-center"
+        >
+          <div className="mb-6 inline-flex p-4 rounded-full bg-blue-50 text-blue-600">
+            <BookOpen size={48} />
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Japanese Quiz</h1>
+          <p className="text-gray-500 mb-10">Chọn bộ câu hỏi để bắt đầu luyện tập</p>
+          
+          <div className="space-y-4">
+            <button
+              onClick={() => setActiveSet(quizData1)}
+              className="w-full p-6 bg-white hover:bg-blue-50 border-2 border-gray-100 hover:border-blue-400 rounded-3xl text-left transition-all group flex items-center justify-between"
+            >
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600">Bộ đề số 1</h3>
+                <p className="text-sm text-gray-500">Câu 01 - 15 (Cơ bản)</p>
+              </div>
+              <ChevronRight className="text-gray-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+            </button>
+
+            <button
+              onClick={() => setActiveSet(quizData2)}
+              className="w-full p-6 bg-white hover:bg-blue-50 border-2 border-gray-100 hover:border-blue-400 rounded-3xl text-left transition-all group flex items-center justify-between"
+            >
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600">Bộ đề số 2</h3>
+                <p className="text-sm text-gray-500">Câu 16 - 30 (Nâng cao hơn)</p>
+              </div>
+              <ChevronRight className="text-gray-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   if (showResult) {
     return (
@@ -174,10 +323,10 @@ export default function App() {
           <p className="text-gray-500 mb-8">Bạn đã hoàn thành bài trắc nghiệm!</p>
           
           <div className="text-5xl font-black text-blue-600 mb-2">
-            {Math.round((score / quizData.length) * 100)}%
+            {Math.round((score / activeSet.length) * 100)}%
           </div>
           <p className="text-xl font-medium text-gray-700 mb-8">
-            {score} / {quizData.length} câu đúng
+            {score} / {activeSet.length} câu đúng
           </p>
 
           <button
@@ -185,7 +334,7 @@ export default function App() {
             className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-semibold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-200 active:scale-95"
           >
             <RotateCcw size={20} />
-            Làm lại từ đầu
+            Quay lại trang chủ
           </button>
         </motion.div>
       </div>
@@ -198,8 +347,9 @@ export default function App() {
         {/* Header Progress */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-3">
+            <button onClick={resetQuiz} className="text-xs font-bold text-blue-500 hover:underline">← Quay lại</button>
             <span className="text-sm font-bold text-gray-400 tracking-wider">
-              CÂU {current + 1} / {quizData.length}
+              CÂU {current + 1} / {activeSet.length}
             </span>
             <span className="text-sm font-bold text-blue-600">
               {Math.round(progress)}%
@@ -216,23 +366,25 @@ export default function App() {
 
         {/* Question Area */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            className="mb-8"
-          >
-            <div className="flex gap-3 items-start mb-4">
-              <Quote className="text-blue-100 fill-blue-100 rotate-180 flex-shrink-0" size={32} />
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight" dangerouslySetInnerHTML={{ __html: question.question }} />
-            </div>
-          </motion.div>
+          {question && (
+            <motion.div
+              key={`${activeSet === quizData1 ? 's1' : 's2'}-${current}`}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="mb-8"
+            >
+              <div className="flex gap-3 items-start mb-4">
+                <Quote className="text-blue-100 fill-blue-100 rotate-180 flex-shrink-0" size={32} />
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight" dangerouslySetInnerHTML={{ __html: question.question }} />
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
 
         {/* Options */}
         <div className="grid grid-cols-1 gap-3">
-          {question.options.map((opt, index) => {
+          {question?.options.map((opt, index) => {
             const isCorrect = index === question.correctAnswer;
             const isSelected = index === selected;
             const showFeedback = selected !== null;
@@ -272,7 +424,7 @@ export default function App() {
 
         {/* Explanation & Next */}
         <AnimatePresence>
-          {selected !== null && (
+          {selected !== null && question && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -289,7 +441,7 @@ export default function App() {
                 onClick={handleNext}
                 className="w-full py-4 bg-gray-900 hover:bg-black text-white rounded-2xl font-bold transition-all flex items-center justify-center gap-2 group"
               >
-                {current + 1 === quizData.length ? "Xem kết quả" : "Câu tiếp theo"}
+                {current + 1 === activeSet?.length ? "Xem kết quả" : "Câu tiếp theo"}
                 <ChevronRight className="group-hover:translate-x-1 transition-transform" size={20} />
               </button>
             </motion.div>
