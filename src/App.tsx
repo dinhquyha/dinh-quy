@@ -1613,19 +1613,26 @@ export default function App() {
 
   return (
     <div 
-      className="min-h-screen bg-[#f9fff9] flex items-center justify-center p-4 sm:p-6 font-sans relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center p-4 sm:p-6 font-sans relative overflow-hidden bg-white"
       onClick={() => selected !== null && handleNext()}
     >
-      {/* Decorative blobs for quiz background */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-green-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-green-100/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://lh3.googleusercontent.com/d/1BSk6INItXbUbXDOzffQKTRuBeFCZaVc-" 
+          className="w-full h-full object-cover opacity-30"
+          alt="Background"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-white/40" />
+      </div>
 
       <div 
-        className={`bg-white w-full max-w-2xl landscape:max-w-4xl flex flex-col rounded-3xl sm:rounded-[3rem] landscape:rounded-2xl shadow-2xl shadow-green-100/50 border border-green-50 relative z-10 max-h-[98vh] landscape:h-[96vh] overflow-hidden transition-all ${selected !== null ? 'cursor-pointer hover:bg-green-50/10' : ''}`}
+        className={`bg-white w-full max-w-2xl landscape:max-w-4xl flex flex-col rounded-3xl sm:rounded-[3rem] landscape:rounded-2xl shadow-2xl shadow-green-100/50 border border-green-50 relative z-10 max-h-[98vh] landscape:max-h-[96vh] overflow-hidden transition-all ${selected !== null ? 'cursor-pointer hover:bg-green-50/10' : ''}`}
       >
         {/* Header: Question + Progress + Translation */}
-        <div className="px-5 sm:px-10 landscape:px-8 pt-8 sm:pt-10 landscape:pt-6 pb-1 shrink-0">
-          <div className="w-full bg-green-50 h-1.5 sm:h-2 rounded-full overflow-hidden border border-green-100/50 shadow-inner mb-4 sm:mb-6 landscape:mb-4">
+        <div className="px-5 sm:px-10 landscape:px-8 pt-8 sm:pt-10 landscape:pt-4 pb-1 shrink-0">
+          <div className="w-full bg-green-50 h-1.5 sm:h-2 rounded-full overflow-hidden border border-green-100/50 shadow-inner mb-4 sm:mb-6 landscape:mb-2">
             <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
@@ -1638,19 +1645,19 @@ export default function App() {
               <h2 
                 className={`${
                   question.question.replace(/<[^>]*>?/gm, '').length > 80 
-                    ? "text-base sm:text-lg md:text-xl landscape:text-base" 
+                    ? "text-base sm:text-lg md:text-xl landscape:text-sm" 
                     : question.question.replace(/<[^>]*>?/gm, '').length > 40
-                    ? "text-lg sm:text-xl md:text-2xl landscape:text-xl"
-                    : "text-xl sm:text-2xl md:text-3xl landscape:text-2xl"
-                } font-bold text-[#0d260d] leading-[2] landscape:leading-snug tracking-tight mb-2 landscape:mb-1`} 
+                    ? "text-lg sm:text-xl md:text-2xl landscape:text-base"
+                    : "text-xl sm:text-2xl md:text-3xl landscape:text-lg"
+                } font-bold text-[#0d260d] leading-[2] landscape:leading-normal tracking-tight mb-2 landscape:mb-0`} 
                 dangerouslySetInnerHTML={{ __html: question.question.replace(/_______/g, '___') }} 
               />
             </div>
           )}
         </div>
 
-        <div className="flex-1 overflow-y-auto px-5 sm:px-10 landscape:px-8 py-4 landscape:py-4 custom-scrollbar">
-          <div className="grid grid-cols-1 sm:grid-cols-2 landscape:grid-cols-2 gap-3 sm:gap-4 landscape:gap-3 mb-4 landscape:mb-2">
+        <div className="flex-1 overflow-y-auto px-5 sm:px-10 landscape:px-8 py-4 landscape:py-1 custom-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 landscape:grid-cols-2 gap-3 sm:gap-4 landscape:gap-2 mb-4 landscape:mb-1">
             {question?.options.map((opt, index) => {
               const isCorrect = index === question.correctAnswer;
               const isSelected = index === selected;
@@ -1667,20 +1674,20 @@ export default function App() {
                   }}
                   disabled={showFeedback}
                   className={`
-                    relative group flex items-center justify-between p-3 sm:p-4 landscape:p-3 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 text-left min-h-[3.5rem] sm:min-h-[4.5rem] landscape:min-h-[3.5rem]
+                    relative group flex items-center justify-between p-3 sm:p-4 landscape:p-2.5 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 text-left min-h-[3.5rem] sm:min-h-[4.5rem] landscape:min-h-[2.5rem]
                     ${!showFeedback ? "border-gray-50 hover:border-green-300 hover:bg-green-50/50 bg-[#fafdfa] shadow-sm active:scale-[0.98]" : ""}
                     ${showFeedback && isCorrect ? "border-green-500 bg-green-50 text-green-800 font-bold shadow-green-100" : ""}
                     ${showFeedback && isSelected && !isCorrect ? "border-red-500 bg-red-50 text-red-800 shadow-red-100" : ""}
                     ${showFeedback && !isSelected && !isCorrect ? "opacity-30 border-transparent grayscale-[0.5]" : ""}
                   `}
                 >
-                  <span className="text-base sm:text-lg landscape:text-base font-semibold leading-tight" dangerouslySetInnerHTML={{ __html: opt }} />
+                  <span className="text-base sm:text-lg landscape:text-sm font-semibold leading-tight" dangerouslySetInnerHTML={{ __html: opt }} />
                   {showFeedback && (
                     <div className="flex-shrink-0 ml-1">
                       {isCorrect ? (
-                        <CheckCircle2 className="text-green-600" size={24} />
+                        <CheckCircle2 className="text-green-600" size={24} landscape:size={20} />
                       ) : isSelected ? (
-                        <XCircle className="text-red-500" size={24} />
+                        <XCircle className="text-red-500" size={24} landscape:size={20} />
                       ) : null}
                     </div>
                   )}
