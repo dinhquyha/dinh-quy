@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+u {
+  text-decoration: underline;
+  text-decoration-color: #f97316; /* Màu cam vibrance cho dấu gạch chân */
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+  color: #2563eb; /* Màu xanh đậm cho text */
+  text-decoration-skip-ink: none;
+}
