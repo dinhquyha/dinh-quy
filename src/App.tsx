@@ -5,7 +5,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { CheckCircle2, XCircle, RotateCcw, ChevronRight, BookOpen } from "lucide-react";
+import { XCircle, RotateCcw } from "lucide-react";
 
 interface Question {
   id: number;
@@ -1110,23 +1110,23 @@ const quizData9: Question[] = [
   {
     id: 152,
     question: "<ruby>富士山<rt>ふじさん</rt></ruby>は エベレスト _______ 。",
-    options: ["より <ruby>高<rt>たか</rt></ruby>い", "ほど <ruby>高<rt>たか</rt></ruby>くない", "の ほうが <ruby>高<rt>たか</rt></ruby>い", "の ようより <ruby>高<rt>たか</rt></ruby>くない"],
-    correctAnswer: 1,
-    explanation: "Núi Phú Sỹ không cao bằng núi Everest. (～ほど～ない: Không bằng...)"
+    options: ["より ひくいです", "より たかいです", "ほど たかくないです", "ほど ひくいです"],
+    correctAnswer: 0,
+    explanation: "Núi Phú Sĩ thấp hơn Everest. (より: hơn)"
   },
   {
     id: 153,
-    question: "<u>海</u> や <ruby>川<rt>かわ</rt></ruby>で <ruby>魚<rt>さかな</rt></ruby>を とります。",
-    options: ["うめ", "かわ", "うみ", "やま"],
+    question: "この <ruby>薬<rt>くすり</rt></ruby>を <ruby>飲<rt>の</rt></ruby>むと、ゆっくり _______ 。",
+    options: ["ねられます", "おきます", "ねむれます", "ねます"],
     correctAnswer: 2,
-    explanation: "Tôi đánh bắt cá ở biển và ở sông. (海 - うみ: Biển)"
+    explanation: "Uống thuốc này vào sẽ ngủ ngon. (ねむれる: Có thể ngủ)"
   },
   {
     id: 154,
-    question: "<ruby>先週<rt>せんしゅう</rt></ruby>は、<ruby>一週間<rt>いちしゅうかん</rt></ruby>の うち _______ も <ruby>休<rt>やす</rt></ruby>んで しまった。",
-    options: ["よっか", "ようか", "ここのか", "ついたち"],
+    question: "<ruby>日本<rt>にほん</rt></ruby>に _______ いました。",
+    options: ["よっか", "よにん", "よじ", "よん"],
     correctAnswer: 0,
-    explanation: "Tuần trước, tôi đã nghỉ mất 4 ngày trong một tuần. (四日 - よっか: 4 ngày/Ngày mùng 4)"
+    explanation: "Tôi đã ở Nhật 4 ngày. (四日 - よっか: 4 ngày)"
   },
   {
     id: 155,
@@ -1498,174 +1498,223 @@ export default function App() {
 
   if (!activeSet) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-hidden bg-white">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://lh3.googleusercontent.com/d/1BSk6INItXbUbXDOzffQKTRuBeFCZaVc-" 
-            className="w-full h-full object-cover opacity-30"
-            alt="Background"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-white/40" />
+      <div className="h-screen w-screen overflow-hidden flex flex-col relative bg-[#fcfdf7] font-sans">
+        {/* Background Decorative Leaves */}
+        <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-green-200 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-green-100 rounded-full blur-[100px]" />
         </div>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 w-full max-w-4xl text-center flex flex-col items-center"
-        >
-          <div className="mb-6 sm:mb-8 landscape:mb-3 inline-flex overflow-hidden rounded-full shadow-lg border-4 border-white">
-            <img 
-              src="https://lh3.googleusercontent.com/d/1o69qwMbhdbWdNKE_I93uZyZvYNxqlGLr" 
-              alt="Logo" 
-              className="w-24 h-24 sm:w-32 sm:h-32 landscape:w-16 landscape:h-16 object-cover"
-              referrerPolicy="no-referrer"
-            />
+
+        {/* 1. Header Area */}
+        <header className="flex-shrink-0 pt-10 pb-6 portrait:flex-col landscape:h-[20vh] flex items-center justify-center relative z-10 px-6">
+          <div className="flex flex-col items-center">
+            {/* Logo Circle */}
+            <motion.div 
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border-2 border-green-500 flex items-center justify-center p-1 bg-white shadow-sm mb-6 flex-shrink-0"
+            >
+              <div className="w-full h-full rounded-full overflow-hidden border border-green-100">
+                <img 
+                  src="https://lh3.googleusercontent.com/d/1o69qwMbhdbWdNKE_I93uZyZvYNxqlGLr" 
+                  alt="Logo" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </motion.div>
+
+            {/* Titles - Portrait specific style */}
+            <div className="text-center portrait:block hidden">
+              <h1 className="text-2xl font-black text-black tracking-tight mb-4">JLPT N4/N5 QUIZ</h1>
+              <h2 className="text-xl font-black text-green-700 tracking-wide uppercase">CHỌN BÀI HỌC HÔM NAY</h2>
+            </div>
+            
+            {/* Titles - Landscape specific style */}
+            <div className="text-center landscape:block hidden">
+               <h1 className="text-2xl font-black text-[#2d4a27] tracking-tight">Japanese Quiz</h1>
+               <div className="h-1 w-12 bg-green-500 mx-auto mt-2 rounded-full" />
+            </div>
           </div>
-          
-          <h1 className="text-3xl sm:text-5xl landscape:text-3xl font-extrabold text-[#0d260d] mb-3 landscape:mb-1 tracking-tight">Japanese N4-N5 Quiz</h1>
-          <p className="text-[#3c5a3c] text-base sm:text-lg landscape:text-sm mb-8 sm:mb-12 landscape:mb-4 font-medium px-4">Chọn bộ câu hỏi để bắt đầu luyện tập</p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 landscape:grid-cols-4 gap-3 sm:gap-4 landscape:gap-2 w-full max-h-[60vh] landscape:max-h-[50vh] overflow-y-auto px-2 py-1 custom-scrollbar">
-            {[
-              { data: quizData1, title: "Ngày 1", range: "Câu 01 - 15" },
-              { data: quizData2, title: "Ngày 2", range: "Câu 16 - 30" },
-              { data: quizData3, title: "Ngày 3", range: "Câu 31 - 45" },
-              { data: quizData4, title: "Ngày 4", range: "Câu 46 - 60" },
-              { data: quizData5, title: "Ngày 5", range: "Câu 61 - 75" },
-              { data: quizData6, title: "Ngày 6", range: "Câu 76 - 90" },
-              { data: quizData7, title: "Ngày 7", range: "Câu 91 - 125" },
-              { data: quizData8, title: "Ngày 8", range: "Câu 126 - 140" },
-              { data: quizData9, title: "Ngày 9", range: "Câu 141 - 155" },
-              { data: quizData10, title: "Ngày 10", range: "Câu 156 - 170" },
-              { data: quizData11, title: "Ngày 11", range: "Câu 171 - 185" },
-              { data: quizData12, title: "Ngày 12", range: "Câu 186 - 200" },
-            ].map((set, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveSet(set.data)}
-                className="w-full p-4 sm:p-5 landscape:p-3 bg-white/80 backdrop-blur-sm hover:bg-green-50 border border-[#e2eee2] hover:border-green-200 rounded-2xl sm:rounded-[2rem] landscape:rounded-xl text-left transition-all group flex items-center justify-between shadow-sm hover:shadow-md active:scale-[0.98]"
-              >
-                <div>
-                  <h3 className="text-lg sm:text-xl landscape:text-base font-bold text-[#0d260d] group-hover:text-green-700">{set.title}</h3>
-                  <p className="text-xs sm:text-sm landscape:text-[10px] text-[#5a7a5a]">{set.range}</p>
-                </div>
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-green-200 group-hover:text-green-500 group-hover:translate-x-1 transition-all" />
-              </button>
-            ))}
+        </header>
+
+        {/* 2. Content Area */}
+        <main className="flex-1 relative z-10 px-4 sm:px-8 overflow-hidden flex flex-col items-center">
+          {/* Landscape title */}
+          <div className="landscape:flex hidden items-center gap-3 mb-6">
+             <span className="text-green-500 transform rotate-[-45deg]"><div className="w-1.5 h-4 bg-green-400 rounded-full" /><div className="w-1.5 h-3 bg-green-300 rounded-full mt-1 ml-2" /></span>
+             <h2 className="text-[#2d4a27] text-sm sm:text-lg font-black uppercase tracking-[0.2em] opacity-80">Chọn lộ trình hôm nay</h2>
+             <span className="text-green-500 transform rotate-[135deg] scale-x-[-1]"><div className="w-1.5 h-4 bg-green-400 rounded-full" /><div className="w-1.5 h-3 bg-green-300 rounded-full mt-1 ml-2" /></span>
           </div>
-        </motion.div>
+
+          <div className="w-full max-w-2xl h-full flex flex-col">
+            {/* Portrait: Vertical Stack | Landscape: Horizontal Swiper */}
+            <div className="portrait:flex portrait:flex-col portrait:gap-4 portrait:overflow-y-auto portrait:px-4 portrait:pb-20 landscape:flex landscape:overflow-x-auto landscape:snap-x landscape:snap-mandatory landscape:scrollbar-hide landscape:gap-4 landscape:p-4 landscape:pb-10 custom-scrollbar">
+              {[
+                { data: quizData1, title: "NGÀY 1", range: "01 - 15", icon: "☀️", color: "bg-yellow-50" },
+                { data: quizData2, title: "NGÀY 2", range: "16 - 30", icon: "⛅", color: "bg-sky-50" },
+                { data: quizData3, title: "NGÀY 3", range: "31 - 45", icon: "🌱", color: "bg-green-50" },
+                { data: quizData4, title: "NGÀY 4", range: "46 - 60", icon: "⛰️", color: "bg-emerald-50" },
+                { data: quizData5, title: "NGÀY 5", range: "61 - 75", icon: "🌊", color: "bg-blue-50" },
+                { data: quizData6, title: "NGÀY 6", range: "76 - 90", icon: "🏮", color: "bg-orange-50" },
+                { data: quizData7, title: "NGÀY 7", range: "91 - 125", icon: "🏯", color: "bg-stone-50" },
+                { data: quizData8, title: "NGÀY 8", range: "126 - 140", icon: "🌸", color: "bg-rose-50" },
+                { data: quizData9, title: "NGÀY 9", range: "141 - 155", icon: "🍱", color: "bg-orange-50" },
+                { data: quizData10, title: "NGÀY 10", range: "156 - 170", icon: "🗾", color: "bg-indigo-50" },
+                { data: quizData11, title: "NGÀY 11", range: "171 - 185", icon: "🗼", color: "bg-red-50" },
+                { data: quizData12, title: "NGÀY 12", range: "186 - 200", icon: "🎌", color: "bg-blue-50" },
+              ].map((set, idx) => (
+                <motion.div
+                  key={idx}
+                  className="portrait:w-full landscape:snap-center landscape:shrink-0 landscape:w-[46%]"
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setActiveSet(set.data)}
+                    className="w-full h-[83px] bg-white border-2 border-green-600 portrait:rounded-3xl landscape:rounded-[2rem] flex flex-col items-center justify-center transition-all shadow-sm group"
+                  >
+                    <div className="flex flex-col items-center">
+                      <h3 className="portrait:text-2xl landscape:text-xl font-black text-black mb-0.5">{set.title}</h3>
+                      <p className="portrait:text-sm landscape:text-xs font-black text-black">CÂU {set.range}</p>
+                    </div>
+                  </motion.button>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </main>
       </div>
     );
   }
 
   if (showResult) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-white">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://lh3.googleusercontent.com/d/1BSk6INItXbUbXDOzffQKTRuBeFCZaVc-" 
-            className="w-full h-full object-cover opacity-30"
-            alt="Background"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-white/40" />
+      <div className="h-screen w-screen overflow-hidden flex flex-col relative bg-[#fcfdf7] font-sans">
+        {/* Background Decorative Leaves */}
+        <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-green-200 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-green-100 rounded-full blur-[100px]" />
         </div>
-        
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-white w-full max-w-md p-10 landscape:p-6 rounded-[3rem] landscape:rounded-2xl shadow-xl border border-green-50 text-center overflow-y-auto max-h-[96vh]"
-        >
-          <div className="mb-8 landscape:mb-4 inline-flex overflow-hidden rounded-full shadow-md border-2 border-white">
+
+        {/* 1. Header (20%) */}
+        <header className="h-[20vh] landscape:h-[25vh] flex flex-col items-center justify-center relative z-10">
+          <div className="overflow-hidden rounded-full w-16 h-16 sm:w-20 sm:h-20 ring-4 ring-white shadow-lg">
             <img 
               src="https://lh3.googleusercontent.com/d/1o69qwMbhdbWdNKE_I93uZyZvYNxqlGLr" 
               alt="Logo" 
-              className="w-24 h-24 landscape:w-16 landscape:h-16 object-cover"
+              className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
           </div>
-          <h1 className="text-3xl landscape:text-2xl font-bold text-[#0d260d] mb-2 landscape:mb-1">Kết quả</h1>
-          <p className="text-[#3c5a3c] mb-10 landscape:mb-4">Bạn đã hoàn thành bài trắc nghiệm!</p>
-          
-          <div className="landscape:flex landscape:items-center landscape:justify-center landscape:gap-8 landscape:mb-4">
-            <div className="text-6xl landscape:text-4xl font-black text-green-600 mb-4 landscape:mb-0 drop-shadow-sm">
+          <h1 className="text-2xl sm:text-4xl font-black text-[#2d4a27] mt-4 sm:mt-6 tracking-tight uppercase">Hoàn Thành!</h1>
+        </header>
+
+        {/* 2. Content (55%) */}
+        <main className="h-[55vh] landscape:h-[50vh] flex flex-col items-center justify-center relative z-10 px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white p-8 sm:p-12 rounded-[3.5rem] shadow-[0_15px_40px_rgba(45,74,39,0.1)] border-2 border-[#e8f2e1] text-center max-w-sm w-full relative"
+          >
+            <div className="text-7xl sm:text-8xl font-black text-green-500 mb-2">
               {Math.round((score / activeSet.length) * 100)}%
             </div>
-            <p className="text-xl landscape:text-lg font-semibold text-[#1a3a1a] mb-10 landscape:mb-0">
-              {score} / {activeSet.length} câu đúng
+            <p className="text-xl sm:text-2xl font-black text-[#2d4a27]/60 mb-8 sm:mb-12">
+              Chính xác {score} / {activeSet.length}
             </p>
-          </div>
+            
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={resetQuiz}
+              className="w-full py-5 bg-[#2d4a27] hover:bg-black text-white rounded-3xl font-black text-lg sm:text-xl transition-all shadow-lg flex items-center justify-center gap-4 uppercase tracking-widest"
+            >
+              <RotateCcw className="w-6 h-6" />
+              <span>Tiếp tục luyện</span>
+            </motion.button>
+          </motion.div>
+        </main>
 
-          <button
-            onClick={resetQuiz}
-            className="w-full py-5 landscape:py-3 bg-green-600 hover:bg-green-700 text-white rounded-[2rem] landscape:rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-100 active:scale-95"
-          >
-            <RotateCcw className="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
-            Quay lại trang chủ
-          </button>
-        </motion.div>
+        {/* 3. Footer (25%) */}
+        <footer className="h-[25vh] relative z-10 flex items-center justify-center">
+            <p className="text-[#2d4a27]/40 text-sm font-black tracking-widest uppercase">Hãy tiếp tục mỗi ngày!</p>
+        </footer>
       </div>
     );
   }
 
   return (
     <div 
-      className="min-h-screen flex items-center justify-center p-4 sm:p-6 font-sans relative overflow-hidden bg-white"
+      className="h-screen w-screen overflow-hidden flex flex-col relative bg-[#fcfdf7] font-sans select-none"
       onClick={() => selected !== null && handleNext()}
     >
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://lh3.googleusercontent.com/d/1BSk6INItXbUbXDOzffQKTRuBeFCZaVc-" 
-          className="w-full h-full object-cover opacity-30"
-          alt="Background"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute inset-0 bg-white/40" />
+      {/* Background Decorative Leaves */}
+      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+        <div className="absolute top-10 left-10 w-48 h-48 bg-green-200 rounded-full blur-[80px]" />
+        <div className="absolute bottom-10 right-10 w-48 h-48 bg-green-100 rounded-full blur-[80px]" />
       </div>
 
-      <div 
-        className={`bg-white w-full max-w-2xl landscape:max-w-4xl flex flex-col rounded-3xl sm:rounded-[3rem] landscape:rounded-2xl shadow-2xl shadow-green-100/50 border border-green-50 relative z-10 max-h-[98vh] landscape:max-h-[96vh] overflow-hidden transition-all ${selected !== null ? 'cursor-pointer hover:bg-green-50/10' : ''}`}
-      >
-        {/* Header: Question + Progress + Translation */}
-        <div className="px-5 sm:px-10 landscape:px-8 pt-8 sm:pt-10 landscape:pt-4 pb-1 shrink-0">
-          <div className="w-full bg-green-50 h-1.5 sm:h-2 rounded-full overflow-hidden border border-green-100/50 shadow-inner mb-4 sm:mb-6 landscape:mb-2">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              className="bg-gradient-to-r from-green-400 to-green-600 h-full rounded-full"
-            />
-          </div>
-
-          {question && (
-            <div className="mb-4 landscape:mb-1">
-              <h2 
-                className={`${
-                  question.question.replace(/<[^>]*>?/gm, '').length > 80 
-                    ? "text-base sm:text-lg md:text-xl landscape:text-sm" 
-                    : question.question.replace(/<[^>]*>?/gm, '').length > 40
-                    ? "text-lg sm:text-xl md:text-2xl landscape:text-base"
-                    : "text-xl sm:text-2xl md:text-3xl landscape:text-lg"
-                } font-bold text-[#0d260d] leading-[2] landscape:leading-normal tracking-tight mb-2 landscape:mb-0`} 
-                dangerouslySetInnerHTML={{ __html: question.question.replace(/_______/g, '___') }} 
+      <div className="flex-1 flex flex-col relative z-10 max-w-4xl mx-auto w-full px-4 sm:px-6">
+        
+        {/* 1. Header Area: Progress & Navigation */}
+        <header className="landscape:h-[12vh] flex flex-col justify-center" style={{ height: '72.094px' }}>
+          <div className="flex items-center gap-4 px-4 py-2 sm:px-6 sm:py-3">
+            <motion.button 
+              whileTap={{ scale: 0.8 }}
+              className="p-2 hover:bg-green-50 rounded-full text-[#2d4a27] transition-colors" 
+              onClick={(e) => { e.stopPropagation(); resetQuiz(); }}
+            >
+              <XCircle className="w-6 h-6" />
+            </motion.button>
+            
+            <div className="flex-1 h-3 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                className="bg-green-600 h-full rounded-full"
               />
             </div>
-          )}
+            
+            <div className="text-black font-black text-sm whitespace-nowrap">
+                {current + 1} / {activeSet.length}
+            </div>
+          </div>
+        </header>
+
+        {/* 2. Question Area */}
+        <div className="h-[25vh] landscape:h-[42vh] flex items-center justify-center">
+            <motion.div 
+                key={current}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="w-full bg-white rounded-[2.5rem] border-2 border-green-600 p-6 sm:p-10 flex items-center justify-center relative shadow-sm"
+            >
+                {question && (
+                <h2 
+                    className="text-center font-bold text-black tracking-tight leading-relaxed uppercase"
+                    style={{ fontSize: 'clamp(1.1rem, 3.5vh, 2.8rem)' }}
+                    dangerouslySetInnerHTML={{ __html: question.question.replace(/_______/g, '<span class="text-green-600 border-b-4 border-green-600 mx-1 px-8">&nbsp;</span>') }} 
+                />
+                )}
+            </motion.div>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-5 sm:px-10 landscape:px-8 py-4 landscape:py-1 custom-scrollbar">
-          <div className="grid grid-cols-1 sm:grid-cols-2 landscape:grid-cols-2 gap-3 sm:gap-4 landscape:gap-2 mb-4 landscape:mb-1">
+        {/* 3. Answer Stage */}
+        <main 
+          className="flex-1 portrait:flex portrait:flex-col portrait:gap-3 portrait:items-stretch landscape:grid landscape:grid-cols-2 landscape:grid-rows-2 landscape:gap-4 w-full landscape:h-[30vh] landscape:items-center flex justify-center pb-2 sm:py-8"
+          style={{ paddingTop: '3px' }}
+        >
             {question?.options.map((opt, index) => {
               const isCorrect = index === question.correctAnswer;
               const isSelected = index === selected;
               const showFeedback = selected !== null;
 
               return (
-                <button
+                <motion.button
                   key={`${current}-${index}`}
+                  whileHover={!showFeedback ? { scale: 1.01 } : {}}
+                  whileTap={!showFeedback ? { scale: 0.99 } : {}}
                   onClick={(e) => {
                     if (!showFeedback) {
                       e.stopPropagation();
@@ -1674,50 +1723,58 @@ export default function App() {
                   }}
                   disabled={showFeedback}
                   className={`
-                    relative group flex items-center justify-between p-3 sm:p-4 landscape:p-2.5 rounded-xl sm:rounded-2xl border-2 transition-all duration-300 text-left min-h-[3.5rem] sm:min-h-[4.5rem] landscape:min-h-[2.5rem]
-                    ${!showFeedback ? "border-gray-50 hover:border-green-300 hover:bg-green-50/50 bg-[#fafdfa] shadow-sm active:scale-[0.98]" : ""}
-                    ${showFeedback && isCorrect ? "border-green-500 bg-green-50 text-green-800 font-bold shadow-green-100" : ""}
-                    ${showFeedback && isSelected && !isCorrect ? "border-red-500 bg-red-50 text-red-800 shadow-red-100" : ""}
-                    ${showFeedback && !isSelected && !isCorrect ? "opacity-30 border-transparent grayscale-[0.5]" : ""}
+                    relative flex items-center justify-center px-6 portrait:py-4 landscape:py-0 rounded-2xl border-2 transition-all duration-200 text-center font-bold h-full uppercase w-full
+                    ${!showFeedback 
+                      ? "border-green-600 bg-white text-black hover:bg-green-50" 
+                      : ""}
+                    ${showFeedback && isCorrect 
+                      ? "border-green-600 bg-green-600 text-white shadow-lg" 
+                      : ""}
+                    ${showFeedback && isSelected && !isCorrect 
+                      ? "border-red-600 bg-red-600 text-white shadow-lg" 
+                      : ""}
+                    ${showFeedback && !isSelected && !isCorrect 
+                      ? "opacity-30 border-green-100 grayscale-[0.5]" 
+                      : ""}
                   `}
+                  style={{ 
+                    fontSize: 'clamp(0.9rem, 2.5vh, 1.5rem)',
+                    height: '64px'
+                  }}
                 >
-                  <span className="text-base sm:text-lg landscape:text-sm font-semibold leading-tight" dangerouslySetInnerHTML={{ __html: opt }} />
-                  {showFeedback && (
-                    <div className="flex-shrink-0 ml-1">
-                      {isCorrect ? (
-                        <CheckCircle2 className="text-green-600" size={24} landscape:size={20} />
-                      ) : isSelected ? (
-                        <XCircle className="text-red-500" size={24} landscape:size={20} />
-                      ) : null}
-                    </div>
-                  )}
-                </button>
+                  <span dangerouslySetInnerHTML={{ __html: opt }} className="leading-tight" />
+                </motion.button>
               );
             })}
-          </div>
-        </div>
+        </main>
 
-        {/* Footer: Fixed Translation area with reserved space */}
-        <div className="px-5 sm:px-10 landscape:px-8 shrink-0 h-[120px] sm:h-[150px] landscape:h-auto landscape:min-h-[80px]">
+        {/* 4. Footer Area */}
+        <footer className="h-[20vh] landscape:h-[15vh] flex items-center justify-center py-2">
           <AnimatePresence mode="wait">
-            {selected !== null && (
+            {selected !== null ? (
               <motion.div
                 key={`explanation-${current}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="pb-8 sm:pb-10 landscape:pb-6"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="w-full flex items-center justify-center"
               >
-                <div className="bg-green-50/60 p-3 sm:p-4 landscape:p-3 rounded-xl border border-green-100">
-                  <p className="text-xs sm:text-sm landscape:text-sm text-[#2d4a2d] font-medium leading-relaxed italic">
+                <div className="bg-white px-10 py-0 rounded-[2rem] border-2 border-green-600 text-center w-full shadow-lg">
+                  <div className={`text-[10px] font-black uppercase tracking-widest mb-1 ${selected === question.correctAnswer ? "text-green-600" : "text-red-500"}`}>
+                    {selected === question.correctAnswer ? "Tuyệt vời!" : "Cần cố gắng thêm!"}
+                  </div>
+                  <p className="text-black font-medium leading-normal uppercase" style={{ fontSize: 'clamp(0.9rem, 2.5vh, 1.4rem)' }}>
                     {question.explanation}
                   </p>
                 </div>
               </motion.div>
+            ) : (
+                <div className="opacity-80 flex flex-col items-center gap-1">
+                    <p className="font-black uppercase tracking-widest text-center" style={{ fontSize: '14px', borderColor: '#ffffff', color: '#a19c9c' }}>HÃY CHỌN ĐÁP ÁN ĐÚNG NHẤT</p>
+                </div>
             )}
           </AnimatePresence>
-        </div>
+        </footer>
       </div>
     </div>
   );
